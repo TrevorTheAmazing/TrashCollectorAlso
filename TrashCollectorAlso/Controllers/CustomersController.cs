@@ -26,15 +26,18 @@ namespace TrashCollectorAlso.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            //if (User.IsInRole("Customer"))
-            //{
-            //string custAppId = User.Identity.GetUserId(); //this is good 1/3
-            //var tempCust = db.Customers.Where(d => d.ApplicationId == custAppId).Single(); //this is good 2/3
-            //return RedirectToAction("Details", tempCust.Id); //this is good 3/3
-            //return RedirectToAction("Details", new { Id = tempCust.Id });
-            //return RedirectToAction("Customers", new { Id = id });
-            //}
             var customersIndexView = db.Customers.Select(c => c);
+
+            if (User.IsInRole("Customer"))
+            {
+                //string custAppId = User.Identity.GetUserId(); //this is good 1/3
+                //var tempCust = db.Customers.Where(d => d.ApplicationId == custAppId).Single(); //this is good 2/3
+                //return RedirectToAction("Details", tempCust.Id); //this is good 3/3
+                //return RedirectToAction("Details", new { Id = tempCust.Id });
+                //return RedirectToAction("Customers", new { Id = id });
+                return RedirectToAction("Details", new { Id = customersIndexView.FirstOrDefault().Id });
+            }
+            
             //if (isEmployeeUser())
             //{
             //    //customersIndexView = db.Customers.Where(c=>c.Id == User.Identity.GetUserId()).Select();

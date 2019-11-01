@@ -32,9 +32,12 @@ namespace TrashCollectorAlso.Models
         [Display(Name = "Suspended")]
         public bool serviceIsSuspended { get; set; }
         [Display(Name = "Service Start")]
-
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime serviceStartDate { get; set; }
         [Display(Name = "Service End")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime serviceEndDate { get; set; }
         [Display(Name = "Pickup Confirmed")]
         public bool pickupConfirmed { get; set; }
@@ -42,6 +45,8 @@ namespace TrashCollectorAlso.Models
         public double pickupCharge { get; set; }
         [Display(Name = "Ex. Pickup")]
         public bool extraPickupRequested { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Ex. P. Date")]
         public DateTime extraPickupDate { get; set; }
         [Display(Name = "Ex. P. Confirmed")]
