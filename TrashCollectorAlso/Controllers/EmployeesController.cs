@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace TrashCollectorAlso.Controllers
         }
 
         // GET: Employees
+        [Authorize(Roles = "Employee,Admin")]
         public ActionResult Index()
         {
             if (User.IsInRole("Employee"))
@@ -29,17 +31,20 @@ namespace TrashCollectorAlso.Controllers
                 {
                     //get the employee's user employee id
                     //string tempUserId = User.Identity.GetUserId();//tlc
-                    ///var employeesZipCode = db.Employees.Where(e => e.ApplicationId == tempUserId).Single();
-                    var employeesZipCode = db.Employees.FirstOrDefault();
+                    //var employeesZipCode = db.Employees.Where(e => e.ApplicationId == tempUserId).Single();
+
+                    //var employeesZipCode = db.Employees.FirstOrDefault();
                     //var customersInZipCode = db.Customers.Where(c => c.zip == employeesZipCode.zip);//tlc*
-                    var customersInZipCode = db.Customers.Where(c => c.zip == employeesZipCode.zip);
 
-                    var days = DateTimeFormatInfo.InvariantInfo.DayNames.ToList();
-                    int today = days.IndexOf(System.DateTime.Today.DayOfWeek.ToString());
-                    var employeePickupsForToday = customersInZipCode.Where(cz => cz.weeklyPickupDay == today);
+                    //var customersInZipCode = db.Customers.Where(c => c.zip == employeesZipCode.zip);
 
-                    return View(employeePickupsForToday);
-                    //return RedirectToAction("EmpCustIndex", employeePickupsForToday);
+                    //var days = DateTimeFormatInfo.InvariantInfo.DayNames.ToList();
+                    //int today = days.IndexOf(System.DateTime.Today.DayOfWeek.ToString());
+                    //var employeePickupsForToday = customersInZipCode.Where(cz => cz.weeklyPickupDay == today);
+
+                    //return View(employeePickupsForToday);
+                    return RedirectToAction("EmpCustIndex");
+                    //return RedirectToAction("EmpCustIndex", "Employees", employeePickupsForToday);
                     //var employees = db.Employees.Select(c => c);
                     //return View(employees);
                 }
@@ -74,6 +79,7 @@ namespace TrashCollectorAlso.Controllers
         {
             try
             {
+                employeeIn.ApplicationId = User.Identity.GetUserId();
                 // TODO: Add insert logic here
                 db.Employees.Add(employeeIn);
                 db.SaveChanges();
@@ -141,17 +147,35 @@ namespace TrashCollectorAlso.Controllers
             }
         }
 
+        public ActionResult EmpCustIndex()
+        {                    
+            //get the employee's user employee id
+            string tempUserId = User.Identity.GetUserId();//tlc
+            var employeesZipCode = db.Employees.Where(e => e.ApplicationId == tempUserId).Single();
+            
+            var customersInZipCode = db.Customers.Where(c => c.zip == employeesZipCode.zip);
+
+            var days = DateTimeFormatInfo.InvariantInfo.DayNames.ToList();
+            int today = days.IndexOf(System.DateTime.Today.DayOfWeek.ToString());
+            var employeePickupsForToday = customersInZipCode.Where(cz => cz.weeklyPickupDay == today);
+
+            return View(employeePickupsForToday);
+            //return RedirectToAction("EmpCustIndex", "Employees", employeePickupsForToday);
+            //var employees = db.Employees.Select(c => c);
+            //return View(employees);
+            return View(employeePickupsForToday);
+        }
+
         public ActionResult DailyIndex(int dayOfTheWeek)
         {
             
                 try
                 {
                     //get the employee's user employee id
-                    //string tempUserId = User.Identity.GetUserId();//tlc
-                    ///var employeesZipCode = db.Employees.Where(e => e.ApplicationId == tempUserId).Single();
-                    var employeesZipCode = db.Employees.FirstOrDefault();
-                    //var customersInZipCode = db.Customers.Where(c => c.zip == employeesZipCode.zip);//tlc*
-                    var customersInZipCode = db.Customers.Where(c => c.zip == employeesZipCode.zip);
+                    string tempUserId = User.Identity.GetUserId();//tlc
+                    var employeesZipCode = db.Employees.Where(e => e.ApplicationId == tempUserId).Single();
+                    //var employeesZipCode = db.Employees.FirstOrDefault();
+                    var customersInZipCode = db.Customers.Where(c => c.zip == employeesZipCode.zip);//tlc*
 
                     var employeePickupsForToday = customersInZipCode.Where(cz => cz.weeklyPickupDay == dayOfTheWeek);
 

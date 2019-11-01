@@ -1,0 +1,83 @@
+﻿@model IEnumerable<TrashCollectorAlso.Models.Customer>
+@*@model IEnumerable<TrashCollectorAlso.Models.Employee>*@
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@{
+    if (User.IsInRole("Employee"))
+    {
+        <h2>Pickups For Today</h2>
+    }
+    else
+    {
+        <h2>Index</h2>
+    }
+}
+
+
+@{
+    if (User.IsInRole("Admin"))
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }
+    else
+    {
+        <br />
+    }
+
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.firstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.zip)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.firstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.zip)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
+                @Html.ActionLink("Edit", "../Customers/Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "../Customers/Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+@{ if (User.IsInRole("Employee"))
+    {
+        <hr />
+        <h5>Filter By Pickup Day</h5>
+        @Html.ActionLink("Sunday ", "DailyIndex", new { dayOfTheWeek = 0 })
+        @Html.ActionLink(" Monday ", "DailyIndex", new { dayOfTheWeek = 1 })
+        @Html.ActionLink(" Tuesday ", "DailyIndex", new { dayOfTheWeek = 2 })
+        @Html.ActionLink(" Wednesday ", "DailyIndex", new { dayOfTheWeek = 3 })
+        @Html.ActionLink(" Thursday ", "DailyIndex", new { dayOfTheWeek = 4 })
+        @Html.ActionLink(" Friday ", "DailyIndex", new { dayOfTheWeek = 5 })
+        @Html.ActionLink(" Saturday ", "DailyIndex", new { dayOfTheWeek = 6 })
+    }
+
+}

@@ -55,9 +55,9 @@ namespace TrashCollectorAlso.Models
         public float extraPickupCharge { get; set; }
 
         //tlc
-        //[ForeignKey("ApplicationUser")]//fk attr
-        //public string ApplicationId { get; set; } //fk's spot at the table
-        //public ApplicationUser ApplicationUser { get; set; }//the class the fk attr is referencing
+        [ForeignKey("ApplicationUser")]//fk attr
+        public string ApplicationId { get; set; } //fk's spot at the table
+        public ApplicationUser ApplicationUser { get; set; }//the class the fk attr is referencing
 
         public IEnumerable<SelectListItem> Days //tlc
         {
@@ -73,6 +73,10 @@ namespace TrashCollectorAlso.Models
                            Text = dayName
                        });
             }
+            //set
+            //{
+            //    value = 
+            //}
         }
 
     }

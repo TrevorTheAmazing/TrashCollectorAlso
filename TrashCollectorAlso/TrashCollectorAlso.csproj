@@ -180,17 +180,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910311925290_initial.cs" />
-    <Compile Include="Migrations\201910311925290_initial.Designer.cs">
-      <DependentUpon>201910311925290_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910312105409_thing.cs" />
-    <Compile Include="Migrations\201910312105409_thing.Designer.cs">
-      <DependentUpon>201910312105409_thing.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911010050310_thing1.cs" />
-    <Compile Include="Migrations\201911010050310_thing1.Designer.cs">
-      <DependentUpon>201911010050310_thing1.cs</DependentUpon>
+    <Compile Include="Migrations\201911011710089_addingFKBack.cs" />
+    <Compile Include="Migrations\201911011710089_addingFKBack.Designer.cs">
+      <DependentUpon>201911011710089_addingFKBack.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -268,6 +260,7 @@
     <Content Include="Views\Customers\Edit.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Employees\DailyIndex.cshtml" />
+    <Content Include="Views\Employees\EmpCustIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -286,14 +279,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910311925290_initial.resx">
-      <DependentUpon>201910311925290_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910312105409_thing.resx">
-      <DependentUpon>201910312105409_thing.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911010050310_thing1.resx">
-      <DependentUpon>201911010050310_thing1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911011710089_addingFKBack.resx">
+      <DependentUpon>201911011710089_addingFKBack.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

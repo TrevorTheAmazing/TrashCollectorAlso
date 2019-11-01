@@ -15,9 +15,9 @@ namespace TrashCollectorAlso.Models
         public string lastName { get; set; }
         public string zip { get; set; }
         //tlc
-        //[ForeignKey("ApplicationUser")]//fk attr
-        //public string ApplicationId { get; set; } //fk's spot at the table
-        //public ApplicationUser ApplicationUser { get; set; }//the class the fk attr is referencing
+        [ForeignKey("ApplicationUser")]//fk attr
+        public string ApplicationId { get; set; } //fk's spot at the table
+        public ApplicationUser ApplicationUser { get; set; }//the class the fk attr is referencing
 
     }
 }

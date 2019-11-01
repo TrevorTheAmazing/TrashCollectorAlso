@@ -30,12 +30,12 @@ namespace TrashCollectorAlso.Controllers
 
             if (User.IsInRole("Customer"))
             {
-                //string custAppId = User.Identity.GetUserId(); //this is good 1/3
-                //var tempCust = db.Customers.Where(d => d.ApplicationId == custAppId).Single(); //this is good 2/3
+                string custAppId = User.Identity.GetUserId(); //this is good 1/3
+                var tempCust = db.Customers.Where(d => d.ApplicationId == custAppId).Single(); //this is good 2/3
                 //return RedirectToAction("Details", tempCust.Id); //this is good 3/3
                 //return RedirectToAction("Details", new { Id = tempCust.Id });
                 //return RedirectToAction("Customers", new { Id = id });
-                return RedirectToAction("Details", new { Id = customersIndexView.FirstOrDefault().Id });
+                return RedirectToAction("Details", new { Id = tempCust.Id });
             }
             
             //if (isEmployeeUser())
@@ -63,8 +63,10 @@ namespace TrashCollectorAlso.Controllers
                 //var tempCustomerFromDb = db.Customers.Where(c => c.Id == customerToEdit.Id).Single();
                 //customerFromDb = tempCustomerFromDb;
 
+                //find the customer
                 customerFromDb = db.Customers.Where(c => c.Id == newCustomerInfo.Id).Single();
 
+                //update the customer
                 customerFromDb.firstName = newCustomerInfo.firstName;
                 customerFromDb.lastName = newCustomerInfo.lastName;
 
@@ -76,39 +78,39 @@ namespace TrashCollectorAlso.Controllers
 
                 customerFromDb.weeklyPickupDay = newCustomerInfo.weeklyPickupDay;
 
-                customerFromDb.pickupConfirmed = newCustomerInfo.pickupConfirmed;
-
-                if (!customerFromDb.pickupConfirmed && newCustomerInfo.pickupConfirmed)
-                {
-                    customerFromDb.balance = newCustomerInfo.balance;
-                }
-                else
-                {
-                    //do not update the balance
-                }
-                
-
                 //customerFromDb.monthlyCharge = customerToEdit.monthlyCharge;
                 customerFromDb.serviceIsSuspended = newCustomerInfo.serviceIsSuspended;
                 customerFromDb.serviceStartDate = newCustomerInfo.serviceStartDate.Date;
-                customerFromDb.serviceEndDate = newCustomerInfo.serviceEndDate.Date;
+                customerFromDb.serviceEndDate = newCustomerInfo.serviceEndDate.Date;                
 
-                customerFromDb.pickupCharge = newCustomerInfo.pickupCharge;
                 customerFromDb.extraPickupRequested = newCustomerInfo.extraPickupRequested;
                 customerFromDb.extraPickupDate = newCustomerInfo.extraPickupDate.Date;
-                customerFromDb.extraPickupConfirmed = newCustomerInfo.extraPickupConfirmed;
-                customerFromDb.extraPickupCharge = newCustomerInfo.extraPickupCharge;
 
+                //update the balance
+                double tempBalance = customerFromDb.balance;
 
+                if (!customerFromDb.pickupConfirmed && newCustomerInfo.pickupConfirmed)
+                {
+                    tempBalance += customerFromDb.pickupCharge;
+                    customerFromDb.pickupConfirmed = false;
+                }
 
-                //customerFromDb.ApplicationId = customerToEdit.ApplicationId;
+                if (customerFromDb.extraPickupRequested && newCustomerInfo.extraPickupConfirmed)
+                {
+                    tempBalance += customerFromDb.extraPickupCharge;
+                    customerFromDb.extraPickupRequested = false;
+                    customerFromDb.extraPickupConfirmed = false;
+                }
 
+                customerFromDb.balance = tempBalance;
+
+                //save the changes
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("Home");
             }
         }
 
@@ -119,31 +121,27 @@ namespace TrashCollectorAlso.Controllers
             return View(newCustomer);
         }
 
+        [Authorize(Roles = "Employee,Admin")]
         // POST: Customers/Create
         [HttpPost]
 
         public ActionResult Create(Customer customerIn)
         {
-            //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
-            //string applicationId1 = User.Identity.GetUserId();
-
-            // if (roleManager.FindById(applicationId1).Name == "Customer") ;
-            // {
-         
-                //string applicationId = User.Identity.GetUserId();
-                // TODO: Add insert logic here
-                //customerIn.ApplicationId = applicationId;
-
+            try
+            {
                 db.Customers.Add(customerIn);
+                string applicationId = User.Identity.GetUserId();
+                customerIn.ApplicationId = applicationId;
                 customerIn.extraPickupDate = System.DateTime.Now.Date;
                 customerIn.serviceEndDate = System.DateTime.Now.Date;
                 customerIn.serviceStartDate = System.DateTime.Now.Date;
                 db.SaveChanges();
+                return RedirectToAction("Edit", customerIn.Id.ToString(), customerIn);
+            }
+            catch (Exception)
+            {
                 return RedirectToAction("Index");
-                //return RedirectToAction("Details", customerIn.Id);
-            
-            //}
-            //return View();
+            }
         }
 
         // GET: Customers/Details/5

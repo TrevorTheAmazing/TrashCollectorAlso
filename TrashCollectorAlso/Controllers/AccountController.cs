@@ -81,7 +81,10 @@ namespace TrashCollectorAlso.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    {                        
+                        return RedirectToLocal(returnUrl);
+                    }
+                    
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -176,11 +179,12 @@ namespace TrashCollectorAlso.Controllers
                     //model.UserRoles;
                     if (model.UserRoles == "Customer")
                     {
-                        return RedirectToAction("Create", "Customers");
+                        //return RedirectToAction("Create", "Customers");
+                        return RedirectToAction("Index", "Customers");
                     }
                     else if (model.UserRoles == "Employee")
                     {
-                        return RedirectToAction("Create", "Employees");
+                        return RedirectToAction("Index", "Employees");
                     }
                     //Ends Here                        
 

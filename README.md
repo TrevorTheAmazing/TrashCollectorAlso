@@ -5,14 +5,12 @@ It's time to disrupt the status quo with a flexible, online pickup manager that 
 
 ---
 
-IN PROGRESS - (15 points): As a developer, I want to implement Roles for this application (ASP.NET roles).
-
-IN PROGRESS - (10 points): As an employee, I want all confirmed pickups to have a charge applied to the customer.
 IN PROGRESS - (10 points): As an employee, I want to be able to select a customer profile and see their address with a pin on a map (Google Maps API).
 
 ---
 
 DONE - (5 points): As a developer, I want to make good, consistent commits.
+DONE - (15 points): As a developer, I want to implement Roles for this application (ASP.NET roles).
 
 DONE - (10 points): As an anonymous user, I want to be able to enter my information and sign up, so I can start receiving regular trash pickups.
 
@@ -23,6 +21,7 @@ DONE - (15 points): As a customer, I want to be able to select or change my week
 
 DONE - (10 points): As an employee, I want to be able to confirm that I have completed a pickup.
 DONE - (10 points): As an employee, I want to be able to filter customers in my pickup area by a particular day of the week to see who gets a pickup for the day selected.
+DONE - (10 points): As an employee, I want all confirmed pickups to have a charge applied to the customer.
 DONE - (15 points): As an employee, I want my default view to be a list of today’s trash pickups in my area (determined by the employee’s zip code).
 
 Bonus-

@@ -101,10 +101,8 @@ C:\Users\trevo\Dropbox\dcc\33 - superheroes\TrashCollectorAlso\TrashCollectorAls
 C:\Users\trevo\Dropbox\dcc\33 - superheroes\TrashCollectorAlso\TrashCollectorAlso\obj\Debug\TrashCollectorAlso.csproj.CopyComplete
 C:\Users\trevo\Dropbox\dcc\33 - superheroes\TrashCollectorAlso\TrashCollectorAlso\obj\Debug\TrashCollectorAlso.dll
 C:\Users\trevo\Dropbox\dcc\33 - superheroes\TrashCollectorAlso\TrashCollectorAlso\obj\Debug\TrashCollectorAlso.pdb
-C:\Users\trevo\Dropbox\dcc\33 - superheroes\TrashCollectorAlso\TrashCollectorAlso\obj\Debug\TrashCollectorAlso.Migrations.initial.resources
-C:\Users\trevo\Dropbox\dcc\33 - superheroes\TrashCollectorAlso\TrashCollectorAlso\obj\Debug\TrashCollectorAlso.csproj.GenerateResource.cache
 C:\Users\trevo\Dropbox\dcc\33 - superheroes\TrashCollectorAlso\TrashCollectorAlso\bin\System.Web.Providers.dll
 C:\Users\trevo\Dropbox\dcc\33 - superheroes\TrashCollectorAlso\TrashCollectorAlso\bin\System.Web.Providers.xml
-C:\Users\trevo\Dropbox\dcc\33 - superheroes\TrashCollectorAlso\TrashCollectorAlso\obj\Debug\TrashCollectorAlso.Migrations.thing.resources
 C:\Users\trevo\Dropbox\dcc\33 - superheroes\TrashCollectorAlso\TrashCollectorAlso\obj\Debug\TrashCollectorAlso.csprojAssemblyReference.cache
-C:\Users\trevo\Dropbox\dcc\33 - superheroes\TrashCollectorAlso\TrashCollectorAlso\obj\Debug\TrashCollectorAlso.Migrations.thing1.resources
+C:\Users\trevo\Dropbox\dcc\33 - superheroes\TrashCollectorAlso\TrashCollectorAlso\obj\Debug\TrashCollectorAlso.Migrations.addingFKBack.resources
+C:\Users\trevo\Dropbox\dcc\33 - superheroes\TrashCollectorAlso\TrashCollectorAlso\obj\Debug\TrashCollectorAlso.csproj.GenerateResource.cache
