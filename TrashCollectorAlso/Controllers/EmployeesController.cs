@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -22,30 +23,35 @@ namespace TrashCollectorAlso.Controllers
         // GET: Employees
         public ActionResult Index()
         {
-            //if (User.IsInRole("Employee"))
-            try
-            {
-                //get the employee's user employee id
-                //string tempUserId = User.Identity.GetUserId();//tlc
-                //var employeesZipCode = db.Employees.Where(e => e.ApplicationId == tempUserId).Single();
-                //var customersInZipCode = db.Customers.Where(c => c.zip == employeesZipCode.zip);//tlc*
+            if (User.IsInRole("Employee"))
+            { 
+                try
+                {
+                    //get the employee's user employee id
+                    //string tempUserId = User.Identity.GetUserId();//tlc
+                    ///var employeesZipCode = db.Employees.Where(e => e.ApplicationId == tempUserId).Single();
+                    var employeesZipCode = db.Employees.FirstOrDefault();
+                    //var customersInZipCode = db.Customers.Where(c => c.zip == employeesZipCode.zip);//tlc*
+                    var customersInZipCode = db.Customers.Where(c => c.zip == employeesZipCode.zip);
 
-                //var days = DateTimeFormatInfo.InvariantInfo.DayNames.ToList();
-                //int today = days.IndexOf(System.DateTime.Today.DayOfWeek.ToString());
-                //var employeePickupsForToday = customersInZipCode.Where(cz => cz.weeklyPickupDay == today);
+                    var days = DateTimeFormatInfo.InvariantInfo.DayNames.ToList();
+                    int today = days.IndexOf(System.DateTime.Today.DayOfWeek.ToString());
+                    var employeePickupsForToday = customersInZipCode.Where(cz => cz.weeklyPickupDay == today);
 
-                //return View(employeePickupsForToday);
-                //return RedirectToAction("EmpCustIndex", employeePickupsForToday);
-                var employees = db.Employees.Select(c => c);
-                return View(employees);
+                    return View(employeePickupsForToday);
+                    //return RedirectToAction("EmpCustIndex", employeePickupsForToday);
+                    //var employees = db.Employees.Select(c => c);
+                    //return View(employees);
+                }
+                catch
+                {
+
+                }
             }
-            catch
-            {
-                var employees = db.Employees.Select(c => c);
-                return View(employees);
-            }
+            var employees = db.Employees.Select(c => c);
+            //var employees = db.Employees.FirstOrDefault();
+            return View(employees);
 
-            
         }
 
         // GET: Employees/Details/5
@@ -121,7 +127,7 @@ namespace TrashCollectorAlso.Controllers
 
         // POST: Employees/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Employee employeeToDelete)
         {
             try
             {
@@ -133,6 +139,36 @@ namespace TrashCollectorAlso.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult DailyIndex(int dayOfTheWeek)
+        {
+            
+                try
+                {
+                    //get the employee's user employee id
+                    //string tempUserId = User.Identity.GetUserId();//tlc
+                    ///var employeesZipCode = db.Employees.Where(e => e.ApplicationId == tempUserId).Single();
+                    var employeesZipCode = db.Employees.FirstOrDefault();
+                    //var customersInZipCode = db.Customers.Where(c => c.zip == employeesZipCode.zip);//tlc*
+                    var customersInZipCode = db.Customers.Where(c => c.zip == employeesZipCode.zip);
+
+                    var employeePickupsForToday = customersInZipCode.Where(cz => cz.weeklyPickupDay == dayOfTheWeek);
+
+                    return View(employeePickupsForToday);
+                    //return RedirectToAction("EmpCustIndex", employeePickupsForToday);
+                    //var employees = db.Employees.Select(c => c);
+                    //return View(employees);
+                }
+                catch
+                {
+                    RedirectToAction("Index");
+                }
+
+            //var employees = db.Employees.Select(c => c);
+            var employees = db.Employees.FirstOrDefault();
+            return View(employees);
+
         }
     }
 }

@@ -1,0 +1,152 @@
+﻿@model IEnumerable<TrashCollectorAlso.Models.Customer>
+
+@{
+    ViewBag.Title = "Daily Index";
+}
+
+<h2>DailyIndex</h2>
+
+@{ if (User.IsInRole("Employee"))
+    {
+        <h5>Filter By Pickup Day</h5>
+        @Html.ActionLink("Sunday ", "DailyIndex", new { dayOfTheWeek = 0 })
+        @Html.ActionLink(" Monday ", "DailyIndex", new { dayOfTheWeek = 1 })
+        @Html.ActionLink(" Tuesday ", "DailyIndex", new { dayOfTheWeek = 2 })
+        @Html.ActionLink(" Wednesday ", "DailyIndex", new { dayOfTheWeek = 3 })
+        @Html.ActionLink(" Thursday ", "DailyIndex", new { dayOfTheWeek = 4 })
+        @Html.ActionLink(" Friday ", "DailyIndex", new { dayOfTheWeek = 5 })
+        @Html.ActionLink(" Saturday ", "DailyIndex", new { dayOfTheWeek = 6 })
+    }
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.firstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.city)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.state)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.zip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.weeklyPickupDay)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.balance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.serviceIsSuspended)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.serviceStartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.serviceEndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pickupConfirmed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pickupCharge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.extraPickupRequested)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.extraPickupDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.extraPickupConfirmed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.extraPickupCharge)
+            </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.firstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.city)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.state)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.zip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.weeklyPickupDay)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.balance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.serviceIsSuspended)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.serviceStartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.serviceEndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pickupConfirmed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pickupCharge)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.extraPickupRequested)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.extraPickupDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.extraPickupConfirmed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.extraPickupCharge)
+                </td>*@
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { customerToEdit = item }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+
+    }
+    @*}*@
+</table>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+

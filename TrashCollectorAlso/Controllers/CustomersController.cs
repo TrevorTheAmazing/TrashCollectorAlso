@@ -54,36 +54,50 @@ namespace TrashCollectorAlso.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, Customer customerToEdit)
+        public ActionResult Edit(int id, Customer newCustomerInfo)
         {
             Customer customerFromDb = null;
             try
             {
                 // TODO: Add update logic here
-                var tempCustomerFromDb = db.Customers.Where(c => c.Id == customerToEdit.Id).Single();
-                customerFromDb = tempCustomerFromDb;
-                customerFromDb.firstName = customerToEdit.firstName;
-                customerFromDb.lastName = customerToEdit.lastName;
+                //var tempCustomerFromDb = db.Customers.Where(c => c.Id == customerToEdit.Id).Single();
+                //customerFromDb = tempCustomerFromDb;
 
-                customerFromDb.address1 = customerToEdit.address1;
-                customerFromDb.address2 = customerToEdit.address2;
-                customerFromDb.city = customerToEdit.city;
-                customerFromDb.state = customerToEdit.state;
-                customerFromDb.zip = customerToEdit.zip;
+                customerFromDb = db.Customers.Where(c => c.Id == newCustomerInfo.Id).Single();
 
-                customerFromDb.weeklyPickupDay = customerToEdit.weeklyPickupDay;
-                customerFromDb.balance = customerToEdit.balance;
+                customerFromDb.firstName = newCustomerInfo.firstName;
+                customerFromDb.lastName = newCustomerInfo.lastName;
+
+                customerFromDb.address1 = newCustomerInfo.address1;
+                customerFromDb.address2 = newCustomerInfo.address2;
+                customerFromDb.city = newCustomerInfo.city;
+                customerFromDb.state = newCustomerInfo.state;
+                customerFromDb.zip = newCustomerInfo.zip;
+
+                customerFromDb.weeklyPickupDay = newCustomerInfo.weeklyPickupDay;
+
+                customerFromDb.pickupConfirmed = newCustomerInfo.pickupConfirmed;
+
+                if (!customerFromDb.pickupConfirmed && newCustomerInfo.pickupConfirmed)
+                {
+                    customerFromDb.balance = newCustomerInfo.balance;
+                }
+                else
+                {
+                    //do not update the balance
+                }
+                
 
                 //customerFromDb.monthlyCharge = customerToEdit.monthlyCharge;
-                customerFromDb.serviceIsSuspended = customerToEdit.serviceIsSuspended;
-                customerFromDb.serviceStartDate = customerToEdit.serviceStartDate.Date;
-                customerFromDb.serviceEndDate = customerToEdit.serviceEndDate.Date;
-                customerFromDb.pickupConfirmed = customerToEdit.pickupConfirmed;
-                customerFromDb.pickupCharge = customerToEdit.pickupCharge;
-                customerFromDb.extraPickupRequested = customerToEdit.extraPickupRequested;
-                customerFromDb.extraPickupDate = customerToEdit.extraPickupDate.Date;
-                customerFromDb.extraPickupConfirmed = customerToEdit.extraPickupConfirmed;
-                customerFromDb.extraPickupCharge = customerToEdit.extraPickupCharge;
+                customerFromDb.serviceIsSuspended = newCustomerInfo.serviceIsSuspended;
+                customerFromDb.serviceStartDate = newCustomerInfo.serviceStartDate.Date;
+                customerFromDb.serviceEndDate = newCustomerInfo.serviceEndDate.Date;
+
+                customerFromDb.pickupCharge = newCustomerInfo.pickupCharge;
+                customerFromDb.extraPickupRequested = newCustomerInfo.extraPickupRequested;
+                customerFromDb.extraPickupDate = newCustomerInfo.extraPickupDate.Date;
+                customerFromDb.extraPickupConfirmed = newCustomerInfo.extraPickupConfirmed;
+                customerFromDb.extraPickupCharge = newCustomerInfo.extraPickupCharge;
 
 
 
