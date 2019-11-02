@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using TrashCollectorAlso.Models;
+using TrashCollectorAlso.TrashMaps;
 
 namespace TrashCollectorAlso.Controllers
 {
@@ -150,5 +151,31 @@ namespace TrashCollectorAlso.Controllers
             var customerDetails = db.Customers.Where(c => c.Id == id).Single();
             return View(customerDetails);
         }
+
+
+
+
+
+
+
+        // GET: Customers/Details/5
+        public ActionResult MapIt(int id)
+        {
+            var customerDetails = db.Customers.Where(c => c.Id == id).Single();
+            string customerAddress = customerDetails.address1 + " " +
+                                     customerDetails.address2 + " " +
+                                     customerDetails.city + " " +
+                                     customerDetails.state + " " +
+                                     customerDetails.zip;
+
+            TrashMap trashMap = new TrashMap(customerAddress);
+            
+
+            
+            return View(customerDetails);
+        }
+
+
+
     }
 }
