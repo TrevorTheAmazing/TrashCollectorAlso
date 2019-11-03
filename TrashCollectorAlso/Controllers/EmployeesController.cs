@@ -62,6 +62,11 @@ namespace TrashCollectorAlso.Controllers
         // GET: Employees/Details/5
         public ActionResult Details(int id)
         {
+            if (User.IsInRole("Employee"))
+            {
+                return RedirectToAction("../Customers/Details", new { Id = id });
+            }
+
             var employeeDetails = db.Employees.Where(c => c.Id == id).Single();
             return View(employeeDetails);
         }

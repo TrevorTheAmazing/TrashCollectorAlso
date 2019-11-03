@@ -215,6 +215,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -263,6 +264,7 @@
     <Content Include="Views\Employees\DailyIndex.cshtml" />
     <Content Include="Views\Employees\EmpCustIndex.cshtml" />
     <Content Include="Views\Customers\MapIt.cshtml" />
+    <Content Include="Views\Employees\MapIt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

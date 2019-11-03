@@ -156,12 +156,34 @@
 
     </dl>
 </div>
+
+@{
+    if (User.IsInRole("Employee"))
+    {
+        <button onclick="initMap()">View This Known Location of Trash</button>
+        <!--The div element for the map -->
+        <div id="map" style="height:400px; width:400px;"></div>
+        <br>
+        <script src="~/Scripts/main.js"></script>
+         <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0Jey32q_0fW8xGijS8Gg7HMvVofnNLdU&callback=initMap"
+            type="text/javascript"></script> 
+    }
+}
+
 <p>
-    @Html.ActionLink("Update Customer Information", "Edit", new { id = Model.Id }) |
+    @*@Html.ActionLink("Update Customer Information", "Edit", new { id = Model.Id }) |*@
     @{
         if (User.IsInRole("Customer"))
         {
             @Html.ActionLink("Request a One-Time Pickup", "Index");
+        }
+        else if (User.IsInRole("Employee"))
+        {
+            @Html.ActionLink("Update Customer Information", "Edit", new { id = Model.Id })
+            <br>
+            @Html.ActionLink("View this junk on a map", "Edit", new { id = Model.Id })
+
         }
         else
         {

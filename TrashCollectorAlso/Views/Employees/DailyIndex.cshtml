@@ -9,7 +9,7 @@
 @{ if (User.IsInRole("Employee"))
     {
         <h5>Filter By Pickup Day</h5>
-        @Html.ActionLink("Sunday ", "DailyIndex", new { dayOfTheWeek = 0 })
+        @Html.ActionLink("Sunday ", "DailyIndex", new { dayOfTheWeek = 0 })   
         @Html.ActionLink(" Monday ", "DailyIndex", new { dayOfTheWeek = 1 })
         @Html.ActionLink(" Tuesday ", "DailyIndex", new { dayOfTheWeek = 2 })
         @Html.ActionLink(" Wednesday ", "DailyIndex", new { dayOfTheWeek = 3 })
@@ -147,6 +147,7 @@
 </table>
 
 <p>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index") | 
+    @Html.ActionLink("View the junk on a map", "MapIt")
 </p>
 
