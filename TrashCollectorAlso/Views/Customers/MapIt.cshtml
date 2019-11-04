@@ -183,10 +183,6 @@
 @{
     if (User.IsInRole("Employee"))
     {
-
-        //string customerAddress = TrashCollectorAlso.TrashMaps.TrashMap.GetAddressCoordinates(Model);
-
-        //<button onclick="window.location.href='<%= Url.Action(" MapIt", "Customers" )%>';">View This Known Location of Trash</button>
         <button onclick="initMap(@Model.lat, @Model.lng)">View This Known Location of Trash</button>
         <div id="map" style="height:400px; width:400px;"></div>
         <br>

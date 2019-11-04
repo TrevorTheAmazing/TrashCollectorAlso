@@ -78,11 +78,6 @@ namespace TrashCollectorAlso.Models
                            Text = dayName
                        });
             }
-            //set
-            //{
-            //    value = 
-            //}
         }
-
     }
 }

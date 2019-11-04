@@ -3,11 +3,6 @@ Trash Collector – ASP.NET MVC 5 Web Application – 130 points
 Municipal trash collection has remained largely unchanged for decades. 
 It's time to disrupt the status quo with a flexible, online pickup manager that includes the following features:
 
----
-
-IN PROGRESS - (10 points): As an employee, I want to be able to select a customer profile and see their address with a pin on a map (Google Maps API).
-
----
 
 DONE - (5 points): As a developer, I want to make good, consistent commits.
 DONE - (15 points): As a developer, I want to implement Roles for this application (ASP.NET roles).
@@ -19,6 +14,7 @@ DONE - (10 points): As a customer, I want to be able to specify a START and END 
 DONE - (10 points): As a customer, I want to be able to request an extra, one-time pickup for a specific date of my choice.
 DONE - (15 points): As a customer, I want to be able to select or change my weekly pickup day. 
 
+DONE - (10 points): As an employee, I want to be able to select a customer profile and see their address with a pin on a map (Google Maps API).
 DONE - (10 points): As an employee, I want to be able to confirm that I have completed a pickup.
 DONE - (10 points): As an employee, I want to be able to filter customers in my pickup area by a particular day of the week to see who gets a pickup for the day selected.
 DONE - (10 points): As an employee, I want all confirmed pickups to have a charge applied to the customer.

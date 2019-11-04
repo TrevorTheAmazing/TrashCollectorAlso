@@ -25,7 +25,6 @@ namespace TrashCollectorAlso.Controllers
         public CustomersController()
         {
             db = new ApplicationDbContext();
-            //trashMap = new TrashMap();
         }
 
         // GET: Customers
@@ -157,12 +156,6 @@ namespace TrashCollectorAlso.Controllers
             return View(customerDetails);
         }
 
-
-
-
-
-
-
         // GET: Customers/Details/5
         public async Task<ActionResult> MapIt(int id)
         {
@@ -170,16 +163,9 @@ namespace TrashCollectorAlso.Controllers
 
             trashMap = new TrashMap();
 
-            //var tempCoordinates = await trashMap.GetAddressCoordinates(customerDetails);
             var tempCoordinates = await trashMap.GetAddressCoordinates(customerDetails);
 
             return View(customerDetails);
         }
-
-
-
     }
-    
-
-
 }
