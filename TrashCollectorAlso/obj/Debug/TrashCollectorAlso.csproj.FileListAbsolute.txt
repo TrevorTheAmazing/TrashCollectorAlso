@@ -106,3 +106,5 @@ C:\Users\trevo\Dropbox\dcc\33 - superheroes\TrashCollectorAlso\TrashCollectorAls
 C:\Users\trevo\Dropbox\dcc\33 - superheroes\TrashCollectorAlso\TrashCollectorAlso\obj\Debug\TrashCollectorAlso.csprojAssemblyReference.cache
 C:\Users\trevo\Dropbox\dcc\33 - superheroes\TrashCollectorAlso\TrashCollectorAlso\obj\Debug\TrashCollectorAlso.Migrations.addingFKBack.resources
 C:\Users\trevo\Dropbox\dcc\33 - superheroes\TrashCollectorAlso\TrashCollectorAlso\obj\Debug\TrashCollectorAlso.csproj.GenerateResource.cache
+C:\Users\trevo\Dropbox\dcc\33 - superheroes\TrashCollectorAlso\TrashCollectorAlso\obj\Debug\TrashCollectorAlso.Migrations.api.resources
+C:\Users\trevo\Dropbox\dcc\33 - superheroes\TrashCollectorAlso\TrashCollectorAlso\obj\Debug\TrashCollectorAlso.Migrations.api1.resources

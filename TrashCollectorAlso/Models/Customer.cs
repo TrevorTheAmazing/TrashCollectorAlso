@@ -59,6 +59,11 @@ namespace TrashCollectorAlso.Models
         public string ApplicationId { get; set; } //fk's spot at the table
         public ApplicationUser ApplicationUser { get; set; }//the class the fk attr is referencing
 
+        [Display(Name ="Lat")]
+        public double lat { get; set; }
+        [Display(Name = "Lng")]
+        public double lng { get; set; }
+
         public IEnumerable<SelectListItem> Days //tlc
         {
             get

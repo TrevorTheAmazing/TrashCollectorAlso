@@ -1,7 +1,202 @@
-﻿
+﻿@model TrashCollectorAlso.Models.Customer
+
 @{
     ViewBag.Title = "MapIt";
 }
 
 <h2>MapIt</h2>
 
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.city)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.state)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.state)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.zip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.zip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.weeklyPickupDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.weeklyPickupDay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.balance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.balance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.serviceIsSuspended)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.serviceIsSuspended)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.serviceStartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.serviceStartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.serviceEndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.serviceEndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pickupConfirmed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pickupConfirmed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pickupCharge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pickupCharge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.extraPickupRequested)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.extraPickupRequested)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.extraPickupDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.extraPickupDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.extraPickupConfirmed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.extraPickupConfirmed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.extraPickupCharge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.extraPickupCharge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lng)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lng)
+        </dd>
+
+    </dl>
+</div>
+@{
+    if (User.IsInRole("Employee"))
+    {
+
+        //string customerAddress = TrashCollectorAlso.TrashMaps.TrashMap.GetAddressCoordinates(Model);
+
+        //<button onclick="window.location.href='<%= Url.Action(" MapIt", "Customers" )%>';">View This Known Location of Trash</button>
+        <button onclick="initMap(@Model.lat, @Model.lng)">View This Known Location of Trash</button>
+        <div id="map" style="height:400px; width:400px;"></div>
+        <br>
+        <script src="~/Scripts/TrashMaps.js"></script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0Jey32q_0fW8xGijS8Gg7HMvVofnNLdU&callback=initMap"
+                type="text/javascript"></script>
+    }
+}
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

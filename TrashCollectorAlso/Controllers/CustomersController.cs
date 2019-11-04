@@ -4,11 +4,13 @@ using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using TrashCollectorAlso.Models;
 using TrashCollectorAlso.TrashMaps;
+using Newtonsoft.Json;
 
 namespace TrashCollectorAlso.Controllers
 {
@@ -17,11 +19,13 @@ namespace TrashCollectorAlso.Controllers
     {
         //member variables
         ApplicationDbContext db;
+        TrashMap trashMap;
 
         //constructor
         public CustomersController()
         {
             db = new ApplicationDbContext();
+            //trashMap = new TrashMap();
         }
 
         // GET: Customers
@@ -38,7 +42,7 @@ namespace TrashCollectorAlso.Controllers
                 //return RedirectToAction("Customers", new { Id = id });
                 return RedirectToAction("Details", new { Id = tempCust.Id });
             }
-            
+
             //if (isEmployeeUser())
             //{
             //    //customersIndexView = db.Customers.Where(c=>c.Id == User.Identity.GetUserId()).Select();
@@ -82,7 +86,7 @@ namespace TrashCollectorAlso.Controllers
                 //customerFromDb.monthlyCharge = customerToEdit.monthlyCharge;
                 customerFromDb.serviceIsSuspended = newCustomerInfo.serviceIsSuspended;
                 customerFromDb.serviceStartDate = newCustomerInfo.serviceStartDate.Date;
-                customerFromDb.serviceEndDate = newCustomerInfo.serviceEndDate.Date;                
+                customerFromDb.serviceEndDate = newCustomerInfo.serviceEndDate.Date;
 
                 customerFromDb.extraPickupRequested = newCustomerInfo.extraPickupRequested;
                 customerFromDb.extraPickupDate = newCustomerInfo.extraPickupDate.Date;
@@ -136,6 +140,7 @@ namespace TrashCollectorAlso.Controllers
                 customerIn.extraPickupDate = System.DateTime.Now.Date;
                 customerIn.serviceEndDate = System.DateTime.Now.Date;
                 customerIn.serviceStartDate = System.DateTime.Now.Date;
+                //customerIn.coordinates = trashMap.GetAddressCoordinates(customerIn);
                 db.SaveChanges();
                 return RedirectToAction("Edit", customerIn.Id.ToString(), customerIn);
             }
@@ -159,23 +164,22 @@ namespace TrashCollectorAlso.Controllers
 
 
         // GET: Customers/Details/5
-        public ActionResult MapIt(int id)
+        public async Task<ActionResult> MapIt(int id)
         {
             var customerDetails = db.Customers.Where(c => c.Id == id).Single();
-            string customerAddress = customerDetails.address1 + " " +
-                                     customerDetails.address2 + " " +
-                                     customerDetails.city + " " +
-                                     customerDetails.state + " " +
-                                     customerDetails.zip;
 
-            TrashMap trashMap = new TrashMap(customerAddress);
-            
+            trashMap = new TrashMap();
 
-            
+            //var tempCoordinates = await trashMap.GetAddressCoordinates(customerDetails);
+            var tempCoordinates = await trashMap.GetAddressCoordinates(customerDetails);
+
             return View(customerDetails);
         }
 
 
 
     }
+    
+
+
 }
